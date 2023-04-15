@@ -8,9 +8,12 @@ button.addEventListener("click", (e) => {
   e.preventDefault();
   const url = 'https://jsonplaceholder.typicode.com/posts';
 
+  const headlineInput = JSON.stringify(form.headline);
+  const shortDescriptionInput = JSON.stringify(form.shortDescription);
+
   var formdata = new FormData();
-  formdata.append("headline", form.headline);
-  formdata.append("shortDes", form.shortDescription);
+  formdata.append("headline", headlineInput);
+  formdata.append("shortDes", shortDescriptionInput);
 
   var requestOptions = {
     method: 'POST',
@@ -24,7 +27,7 @@ button.addEventListener("click", (e) => {
   .then(response => response.text())
   .then(result => {
     output = JSON.parse(result);
-    res = output["category"];
+    res = output["id"];
     console.log(result)
     $("#prediction").html(res);
   })
