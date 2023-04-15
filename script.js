@@ -18,11 +18,13 @@ button.addEventListener("click", (e) => {
     redirect: 'follow'
   };
 
+   var output;
    var res;
    fetch(url, requestOptions)
   .then(response => response.text())
   .then(result => {
-    res = result
+    output = JSON.parse(result);
+    res = output["category"];
     console.log(result)
     $("#prediction").html(res);
   })
